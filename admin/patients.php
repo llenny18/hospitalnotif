@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="img/logo/logo.png" rel="icon">
-  <title>Taal RHU System- DataTables</title>
+  <title>Taal RHU System- Patient List</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
@@ -24,11 +24,11 @@
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">DataTables</h1>
+            <h1 class="h3 mb-0 text-gray-800">Patient List</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item">Tables</li>
-              <li class="breadcrumb-item" aria-current="page">DataTables</li>
+            
+              <li class="breadcrumb-item" aria-current="page">Patient List</li>
             </ol>
           </div>
 
@@ -39,32 +39,67 @@
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                  
+                      <th>Patient ID</th> 
+                      <th>QR Code</th> 
+                      <th>Full Name</th> 
+                      <th>Sex</th> 
+                      <th>Age</th> 
+                      <th>Address</th>
+                       <th>Phone Number</th> 
+                       <th>Civil Status</th> 
+                       <th>Birthday</th> 
+                       <th>Philhealth ID</th>
+                        <th>BP</th> 
+                        <th>Temperature</th>
+                        <th>RR</th> 
+                        <th>HR</th>
+                         <th>PR</th>
+                         <th>Weight</th> 
+                         <th>Height</th> 
+                        <th>Diagnosis</th> 
+                        <th>Treatment</th>
+                        <th>Last checkup date</th>
+                        <th>Next followup date</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                     
+                      <th>Patient ID</th> 
+                      <th>QR Code</th> 
+                      <th>Full Name</th> 
+                      <th>Sex</th> 
+                      <th>Age</th> 
+                      <th>Address</th>
+                       <th>Phone Number</th> 
+                       <th>Civil Status</th> 
+                       <th>Birthday</th> 
+                       <th>Philhealth ID</th>
+                        <th>BP</th> 
+                        <th>Temperature</th>
+                        <th>RR</th> 
+                        <th>HR</th>
+                         <th>PR</th>
+                         <th>Weight</th> 
+                         <th>Height</th> 
+                        <th>Diagnosis</th> 
+                        <th>Treatment</th>
+                        <th>Last checkup date</th>
+                        <th>Next followup date</th>
                       </tr>
                     </tfoot>
                     <tbody>
-                      
+                     <?php displayTable($conn, 'patients', 
+    "SELECT * FROM patients", 
+    ['patient_id', 'qr_code', 'full_name', 'sex', 'age', 'address', 'phone_number', 'civil_status', 'birthday', 'philhealth_id', 'bp', 'temperature', 'rr', 'hr', 'pr', 'weight', 'height', 'diagnosis', 'treatment', 'last_checkup_date', 'next_followup_date']
+); ?>
+                       
                     </tbody>
                   </table>
 </div>

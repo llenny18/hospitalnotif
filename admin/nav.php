@@ -3,7 +3,7 @@
         <div class="sidebar-brand-icon">
           <img src="img/logo/logo2.png">
         </div>
-        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+        <div class="sidebar-brand-text mx-3">TAAL-RHU</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item">
@@ -19,17 +19,15 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
-          <span>Bootstrap UI</span>
+          <span>Access Control</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Bootstrap UI</h6>
-            <a class="collapse-item" href="alerts.php">Alerts</a>
-            <a class="collapse-item" href="buttons.php">Buttons</a>
-            <a class="collapse-item" href="dropdowns.php">Dropdowns</a>
-            <a class="collapse-item" href="modals.php">Modals</a>
-            <a class="collapse-item" href="popovers.php">Popovers</a>
-            <a class="collapse-item" href="progress-bar.php">Progress Bars</a>
+            <h6 class="collapse-header">Accounts</h6>
+            <a class="collapse-item" href="admins.php">Admin Accounts</a>
+            <a class="collapse-item" href="workers.php">Health Worker Accounts</a>
+           
+           
           </div>
         </div>
       </li>
@@ -37,13 +35,13 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
           aria-controls="collapseForm">
           <i class="fab fa-fw fa-wpforms"></i>
-          <span>Forms</span>
+          <span>Data Management</span>
         </a>
         <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Forms</h6>
-            <a class="collapse-item" href="form_basics.php">Form Basics</a>
-            <a class="collapse-item" href="form_advanceds.php">Form Advanceds</a>
+          <h6 class="collapse-header">Records</h6>
+          <a class="collapse-item" href="patients.php">Patient List</a>
+          <a class="collapse-item" href="m_records.php">Medical Records List</a>
           </div>
         </div>
       </li>
