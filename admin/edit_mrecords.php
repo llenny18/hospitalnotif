@@ -18,7 +18,58 @@
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->
-    <?php include("./nav.php"); ?>
+    <?php include("./nav.php");
+    
+    $record_id = isset($_GET['record_id']) ? $_GET['record_id'] : '';
+
+    // If editing an existing record, fetch its data
+    if ($record_id) {
+        $stmt = $conn->prepare("SELECT * FROM medical_records WHERE record_id = ?");
+        $stmt->bind_param("i", $record_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            extract($row);
+        }
+        $stmt->close();
+    }
+    
+    // Handle form submission
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $patient_id = $_POST['patient_id'];
+        $checkup_date = $_POST['checkup_date'];
+        $diagnosis = $_POST['diagnosis'];
+        $treatment = $_POST['treatment'];
+        $bp = $_POST['bp'];
+        $temperature = $_POST['temperature'];
+        $rr = $_POST['rr'];
+        $hr = $_POST['hr'];
+        $pr = $_POST['pr'];
+        $weight = $_POST['weight'];
+        $height = $_POST['height'];
+        $doctor_notes = $_POST['doctor_notes'];
+        $nurse_notes = $_POST['nurse_notes'];
+    
+        if ($record_id) {
+            // Update the record
+            $stmt = $conn->prepare("UPDATE medical_records SET patient_id=?, checkup_date=?, diagnosis=?, treatment=?, bp=?, temperature=?, rr=?, hr=?, pr=?, weight=?, height=?, doctor_notes=?, nurse_notes=? WHERE record_id=?");
+            $stmt->bind_param("issssssdiidssi", $patient_id, $checkup_date, $diagnosis, $treatment, $bp, $temperature, $rr, $hr, $pr, $weight, $height, $doctor_notes, $nurse_notes, $record_id);
+        } else {
+            // Insert a new record
+            $stmt = $conn->prepare("INSERT INTO medical_records (patient_id, checkup_date, diagnosis, treatment, bp, temperature, rr, hr, pr, weight, height, doctor_notes, nurse_notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssssssssss", $patient_id, $checkup_date, $diagnosis, $treatment, $bp, $temperature, $rr, $hr, $pr, $weight, $height, $doctor_notes, $nurse_notes);
+        }
+    
+        if ($stmt->execute()) {
+          echo "<script>alert('Record saved successfully!'); window.location.href='m_records.php';</script>";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+    
+        $stmt->close();
+    }
+
+    ?>
         <!-- Topbar -->
 
         <!-- Container Fluid-->
@@ -42,101 +93,61 @@
                   <h6 class="m-0 font-weight-bold text-primary">General Element</h6>
                 </div>
                 <div class="card-body">
-                  <form method="post">
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1">Email address</label>
-                      <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlSelect1">Example select</label>
-                      <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlSelect2">Example multiple select</label>
-                      <select multiple class="form-control" id="exampleFormControlSelect2">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlTextarea1">Example textarea</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlReadonly">Readonly</label>
-                      <input class="form-control" type="text" placeholder="Readonly input here..."
-                        id="exampleFormControlReadonly" readonly>
-                    </div>
-                    <div class="form-group">
-                      <label for="validationServer01">Input with Success</label>
-                      <input type="text" class="form-control is-valid" id="validationServer01"
-                        placeholder="Input with Success" value="Mark" required>
-                      <div class="valid-feedback">
-                        Looks good!
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="validationServer03">Input with Error</label>
-                      <input type="text" class="form-control is-invalid" id="validationServer03"
-                        placeholder="Input with Error" required>
-                      <div class="invalid-feedback">
-                        Please provide a valid city.
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Checkbox</label>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                        <label class="custom-control-label" for="customCheck2">Check this custom checkbox 1</label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                        <label class="custom-control-label" for="customCheck3">Check this custom checkbox 2</label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheckDisabled1" disabled>
-                        <label class="custom-control-label" for="customCheckDisabled1">Check this custom
-                          checkbox</label>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Radio Button</label>
-                      <div class="custom-control custom-radio">
-                        <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="customRadio3">Toggle this custom radio</label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
-                        <label class="custom-control-label" for="customRadio4">Or toggle this other custom radio</label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input type="radio" name="radioDisabled" id="customRadioDisabled2" class="custom-control-input"
-                          disabled>
-                        <label class="custom-control-label" for="customRadioDisabled2">Toggle this custom radio</label>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label>Switches</label>
-                      <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                        <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
-                      </div>
-                      <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" disabled id="customSwitch2">
-                        <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
-                      </div>
-                    </div>
-                  </form>
+                <form method="post">
+        <div class="form-group">
+            <label for="patient_id">Patient ID</label>
+            <input type="text" class="form-control" id="patient_id" name="patient_id" value="<?php echo isset($patient_id) ? htmlspecialchars($patient_id) : ''; ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="checkup_date">Checkup Date</label>
+            <input type="date" class="form-control" id="checkup_date" name="checkup_date" value="<?php echo isset($checkup_date) ? htmlspecialchars($checkup_date) : ''; ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="diagnosis">Diagnosis</label>
+            <textarea class="form-control" id="diagnosis" name="diagnosis" rows="3" required><?php echo isset($diagnosis) ? htmlspecialchars($diagnosis) : ''; ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="treatment">Treatment</label>
+            <textarea class="form-control" id="treatment" name="treatment" rows="3" required><?php echo isset($treatment) ? htmlspecialchars($treatment) : ''; ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="bp">Blood Pressure</label>
+            <input type="text" class="form-control" id="bp" name="bp" value="<?php echo isset($bp) ? htmlspecialchars($bp) : ''; ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="temperature">Temperature</label>
+            <input type="number" step="0.01" class="form-control" id="temperature" name="temperature" value="<?php echo isset($temperature) ? htmlspecialchars($temperature) : ''; ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="rr">Respiratory Rate</label>
+            <input type="number" class="form-control" id="rr" name="rr" value="<?php echo isset($rr) ? htmlspecialchars($rr) : ''; ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="hr">Heart Rate</label>
+            <input type="number" class="form-control" id="hr" name="hr" value="<?php echo isset($hr) ? htmlspecialchars($hr) : ''; ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="pr">Pulse Rate</label>
+            <input type="number" class="form-control" id="pr" name="pr" value="<?php echo isset($pr) ? htmlspecialchars($pr) : ''; ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight</label>
+            <input type="number" step="0.01" class="form-control" id="weight" name="weight" value="<?php echo isset($weight) ? htmlspecialchars($weight) : ''; ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="height">Height</label>
+            <input type="number" step="0.01" class="form-control" id="height" name="height" value="<?php echo isset($height) ? htmlspecialchars($height) : ''; ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="doctor_notes">Doctor Notes</label>
+            <textarea class="form-control" id="doctor_notes" name="doctor_notes" rows="3"><?php echo isset($doctor_notes) ? htmlspecialchars($doctor_notes) : ''; ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="nurse_notes">Nurse Notes</label>
+            <textarea class="form-control" id="nurse_notes" name="nurse_notes" rows="3"><?php echo isset($nurse_notes) ? htmlspecialchars($nurse_notes) : ''; ?></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
                 </div>
               </div>
              
