@@ -44,21 +44,21 @@
               <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                 <thead class="thead-light">
                   <tr>
-                    <th>Record ID</th>
                     <th>QR ID</th>
                     <th>Patient ID</th>
                     <th>QR Code</th>
                     <th>Generated At</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
-                    <th>Record ID</th>
                     <th>QR ID</th>
                     <th>Patient ID</th>
                     <th>QR Code</th>
                     <th>Generated At</th>
-                  </tr>
+                    <th>Action</th>
+                    </tr>
                 </tfoot>
                 <tbody>
                   <?php displayTable(

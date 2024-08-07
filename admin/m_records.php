@@ -58,7 +58,8 @@
                     <th>Height</th>
                     <th>Doctor's Notes</th>
                     <th>Nurse's Notes</th>
-                  </tr>
+                    <th>Action</th>
+                    </tr>
                 </thead>
                 <tfoot>
                   <tr>
@@ -76,7 +77,8 @@
                     <th>Height</th>
                     <th>Doctor's Notes</th>
                     <th>Nurse's Notes</th>
-                  </tr>
+                    <th>Action</th>
+                    </tr>
                 </tfoot>
                 <tbody>
                   <?php displayTable(

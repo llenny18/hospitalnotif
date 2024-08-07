@@ -66,7 +66,8 @@
                         <th>Treatment</th>
                         <th>Last checkup date</th>
                         <th>Next followup date</th>
-                      </tr>
+                        <th>Action</th>
+                        </tr>
                     </thead>
                     <tfoot>
                       <tr>
@@ -92,7 +93,8 @@
                         <th>Treatment</th>
                         <th>Last checkup date</th>
                         <th>Next followup date</th>
-                      </tr>
+                        <th>Action</th>
+                        </tr>
                     </tfoot>
                     <tbody>
                      <?php displayTable($conn, 'patients', 

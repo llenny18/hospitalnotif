@@ -48,6 +48,7 @@
                     <th>Patient ID</th>
                     <th>Message</th>
                     <th>Sent At</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tfoot>
@@ -56,7 +57,8 @@
                     <th>Patient ID</th>
                     <th>Message</th>
                     <th>Sent At</th>
-                  </tr>
+                    <th>Action</th>
+                    </tr>
                 </tfoot>
                 <tbody>
                   <?php displayTable(

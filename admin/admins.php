@@ -50,6 +50,7 @@
                     <th>Full Name</th>
                     <th>Role</th>
                     <th>Last Login</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tfoot>
@@ -60,7 +61,8 @@
                     <th>Full Name</th>
                     <th>Role</th>
                     <th>Last Login</th>
-                  </tr>
+                    <th>Action</th>
+                    </tr>
                 </tfoot>
                 <tbody>
                   <?php displayTable(
