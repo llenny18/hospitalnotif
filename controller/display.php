@@ -29,7 +29,9 @@ function displayTable($conn, $tableName, $query, $columns) {
             echo "<tr>";
             foreach ($columns as $column) {
                 if($column =="file_location"){
-                    echo "<td>" . '<img src="'.$row[$column].'" alt="" >' . "</td>";
+                    echo "<td>" . '<img src="'.$row[$column].'" alt="" ><hr>
+                    <a href="'.$row[$column].'" download="'.$row[$column].'" class="btn btn-danger m-1"> Download Image</a>
+                    ' . "</td>";
                     
                 }
                 else{
