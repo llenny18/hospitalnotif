@@ -2,8 +2,8 @@
 
 
 // Include the PHP QR Code library
-include './model/conn.php';
-include './phpqrcode/qrlib.php';
+include '../model/conn.php';
+include '../phpqrcode/qrlib.php';
 
 // Data to be encoded in the QR code
 
@@ -27,7 +27,7 @@ $sql = "INSERT INTO qr_codes (patient_id, qr_code, file_location) VALUES ('$pati
 if ($conn->query($sql) === TRUE) {
     echo "<script>
         alert('QR Code generated and saved successfully!');
-        window.location.href = 'm_records.php';
+        window.location.href = 'qr_codes.php';
     </script>";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;

@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $password = $_POST['password'];
 
   // Check if the email exists in the database
-  $query = "SELECT * FROM users WHERE email = ?";
+  $query = "SELECT * FROM users WHERE email = ? and role='admin'";
   if ($stmt = $conn->prepare($query)) {
       $stmt->bind_param('s', $email);
       $stmt->execute();
