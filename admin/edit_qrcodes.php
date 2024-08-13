@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="img/logo/logo.png" rel="icon">
-  <title>Taal RHU System- Manage </title>
+  <title>Taal RHU System- Manage QR Codes</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
@@ -68,11 +68,11 @@ $conn->close();
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Manage </h1>
+            <h1 class="h3 mb-0 text-gray-800">Manage QR Codes</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
              
-              <li class="breadcrumb-item" aria-current="page">Manage </li>
+              <li class="breadcrumb-item" aria-current="page">Manage QR Codes</li>
             </ol>
           </div>
 
