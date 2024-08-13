@@ -1,3 +1,16 @@
+<?php
+if(!isset($_SESSION['username'])){
+  echo "<script>alert('Login Required!'); window.location.href='login.php';</script>";
+
+}
+
+{
+
+
+?>
+
+
+
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon">
@@ -174,7 +187,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
-                <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+                <span class="ml-2 d-none d-lg-inline text-white small"><?= $_SESSION['username'] ?></span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -198,3 +211,9 @@
             </li>
           </ul>
         </nav>
+
+<?php
+
+}
+
+?>
