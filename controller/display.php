@@ -12,7 +12,14 @@ function displayTable($conn, $tableName, $query, $columns) {
         while($row = $result->fetch_assoc()) {
             echo "<tr>";
             foreach ($columns as $column) {
-                echo "<td>" . $row[$column] . "</td>";
+                if($column =="file_location"){
+                    echo "<td>" . '<img src="'.$row[$column].'" alt="" >' . "</td>";
+                    
+                }
+                else{
+                    echo "<td>" . $row[$column] . "</td>";
+                }
+                
             }
             if($tableName == "users"){
                 echo "<td><a href='edit_user.php?user_id=".$row['user_id']."'  class='btn btn-primary m-1'>Edit</a><a href='delete.php?idval=".$row['user_id']."&table=$tableName&link=admins&idname=user_id'  class='btn btn-danger m-1'>Delete</a></td>";

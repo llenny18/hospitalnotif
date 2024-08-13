@@ -193,13 +193,13 @@
                         <input type="text" class="form-control" value="01/06/2020" id="simpleDataInput">
                       </div>
                   </div>
-                  <div class="form-group" id="simple-date2">
+                  <div class="form-group" >
                     <label for="oneYearView">One Year View</label>
                       <div class="input-group date">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                         </div>
-                        <input type="text" class="form-control" value="01/06/2020" id="oneYearView">
+                        <input type="text" class="form-control" readonly >
                       </div>
                   </div>
                   <div class="form-group" id="simple-date3">

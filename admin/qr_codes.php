@@ -47,7 +47,7 @@
                     <th>QR ID</th>
                     <th>Patient ID</th>
                     <th>QR Code</th>
-                    <th>Generated At</th>
+                    <th>Image</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -56,7 +56,7 @@
                     <th>QR ID</th>
                     <th>Patient ID</th>
                     <th>QR Code</th>
-                    <th>Generated At</th>
+                    <th>Image</th>
                     <th>Action</th>
                     </tr>
                 </tfoot>
@@ -65,7 +65,7 @@
                     $conn,
                     'qr_codes',
                     "SELECT * FROM qr_codes",
-                    ['qr_id', 'patient_id', 'qr_code', 'generated_at']
+                    ['qr_id', 'patient_id', 'qr_code', 'file_location']
                   ); ?>
 
                 </tbody>
