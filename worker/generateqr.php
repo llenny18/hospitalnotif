@@ -11,7 +11,7 @@ include '../phpqrcode/qrlib.php';
 $patient_id = $_GET['patient_id'];
 
 // Data to be encoded in the QR code (you can customize the URL as needed)
-$data = 'http://localhost/hospitalnotif/admin/view_record.php?record_id=' . $patient_id;
+$data = 'http://localhost/hospitalnotif/m_records.php?p_id=' . $patient_id;
 
 // File path where the QR code image will be saved
 $filename = "../qrcodes/qr_" . $patient_id . ".png";
