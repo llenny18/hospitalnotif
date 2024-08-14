@@ -82,9 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     </form>
                     <hr>
-                    <div class="text-center">
-                      <a class="font-weight-bold small" href="register.html">Create an Account!</a>
-                    </div>
+                    
                     <div class="text-center">
                     </div>
                 </div>
