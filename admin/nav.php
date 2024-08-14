@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['admin_id'])){
   echo "<script>alert('Login Required!'); window.location.href='login.php';</script>";
 
 }
@@ -24,7 +24,7 @@ if(!isset($_SESSION['username'])){
       <div class="sidebar-heading">
         Home
       </div>
-      <li class="nav-item">
+      <li class="nav-item <?php if (basename($_SERVER['REQUEST_URI']) == "index.php") { echo ' active ';} ?>">
         <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -33,33 +33,33 @@ if(!isset($_SESSION['username'])){
       <div class="sidebar-heading">
         System Management
       </div>
-      <li class="nav-item">
+      <li class="nav-item <?php if (basename($_SERVER['REQUEST_URI']) == "admins.php" || basename($_SERVER['REQUEST_URI']) == "workers.php") { echo ' active ';} ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
           <span>Accounts</span>
         </a>
-        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="collapseBootstrap" class="collapse <?php if (basename($_SERVER['REQUEST_URI']) == "admins.php" || basename($_SERVER['REQUEST_URI']) == "workers.php") { echo ' show ';} ?>" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Records</h6>
-            <a class="collapse-item" href="admins.php">Administrators</a>
-            <a class="collapse-item" href="workers.php">Health Workers</a>
+            <a class="collapse-item <?php if (basename($_SERVER['REQUEST_URI']) == "admins.php" ) { echo ' active ';} ?>" href="admins.php">Administrators</a>
+            <a class="collapse-item <?php if (basename($_SERVER['REQUEST_URI']) == "workers.php") { echo ' active ';} ?>" href="workers.php">Health Workers</a>
            
            
           </div>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <?php if (basename($_SERVER['REQUEST_URI']) == "qr_codes.php" || basename($_SERVER['REQUEST_URI']) == "sms_sent.php") { echo ' active ';} ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
-          aria-controls="collapseForm">
+          aria-controls="collapseForm ">
           <i class="fab fa-fw fa-wpforms"></i>
           <span>Access Control</span>
         </a>
-        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+        <div id="collapseForm" class="collapse <?php if (basename($_SERVER['REQUEST_URI']) == "qr_codes.php" || basename($_SERVER['REQUEST_URI']) == "sms_sent.php") { echo ' show ';} ?>" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Records</h6>
-          <a class="collapse-item" href="qr_codes.php">QR Codes</a>
-            <a class="collapse-item" href="sms_sent.php">SMS Notification</a>
+          <a class="collapse-item <?php if (basename($_SERVER['REQUEST_URI']) == "qr_codes.php") { echo ' active ';} ?>" href="qr_codes.php">QR Codes</a>
+            <a class="collapse-item <?php if (basename($_SERVER['REQUEST_URI']) == "sms_sent.php") { echo ' active ';} ?>" href="sms_sent.php">SMS Notification</a>
           </div>
         </div>
       </li>
@@ -69,18 +69,18 @@ if(!isset($_SESSION['username'])){
       <div class="sidebar-heading">
         Records Management
       </div>
-      <li class="nav-item">
+      <li class="nav-item <?php if (basename($_SERVER['REQUEST_URI']) == "patients.php" || basename($_SERVER['REQUEST_URI']) == "m_records.php") { echo ' active ';} ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
           aria-controls="collapseTable">
           <i class="fas fa-fw fa-table"></i>
           <span>Hospital Records</span>
         </a>
-        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+        <div id="collapseTable" class="collapse <?php if (basename($_SERVER['REQUEST_URI']) == "patients.php" || basename($_SERVER['REQUEST_URI']) == "m_records.php") { echo ' show ';} ?>" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Records</h6>
             
-          <a class="collapse-item" href="patients.php">Patient List</a>
-          <a class="collapse-item" href="m_records.php">Medical Records List</a>
+          <a class="collapse-item <?php if (basename($_SERVER['REQUEST_URI']) == "patients.php" ) { echo ' active ';} ?>" href="patients.php">Patient List</a>
+          <a class="collapse-item <?php if ( basename($_SERVER['REQUEST_URI']) == "m_records.php") { echo ' active ';} ?>" href="m_records.php">Medical Records List</a>
           
           </div>
         </div>

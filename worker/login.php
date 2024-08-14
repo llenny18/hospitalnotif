@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $password = $_POST['password'];
 
   // Check if the email exists in the database
-  $query = "SELECT * FROM users WHERE email = ? and role='admin'";
+  $query = "SELECT * FROM users WHERE email = ? and role='health_worker'";
   if ($stmt = $conn->prepare($query)) {
       $stmt->bind_param('s', $email);
       $stmt->execute();
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           // Verify the password
           if (password_verify($password, $user['password_hash'])) {
               // Set session variables
-              $_SESSION['admin_id'] = $user['user_id'];
+              $_SESSION['worker_id'] = $user['user_id'];
               $_SESSION['username'] = $user['username'];
               $_SESSION['role'] = $user['role'];
 
