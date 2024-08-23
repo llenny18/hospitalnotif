@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $password = $_POST['password'];
 
   // Check if the email exists in the database
-  $query = "SELECT * FROM users WHERE email = ? and role='admin'";
+  $query = "SELECT * FROM users WHERE email = ? or username = ? and role='admin'";
   if ($stmt = $conn->prepare($query)) {
-      $stmt->bind_param('s', $email);
+      $stmt->bind_param('ss', $email, $email);
       $stmt->execute();
       $result = $stmt->get_result();
       if ($result->num_rows > 0) {
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                   </div>
                   <form class="user" method="POST" action="">
                     <div class="form-group">
-                      <input type="email" class="form-control" name="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address" required>
+                      <input type="text" class="form-control" name="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address" required>
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control" name="password" id="exampleInputPassword" placeholder="Password" required>

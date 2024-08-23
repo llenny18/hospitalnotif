@@ -22,7 +22,7 @@
 
 
 $patient_id = isset($_GET['pid']) ? $_GET['pid'] : '';
-$qr_code = $full_name = $sex = $age = $address = $phone_number = '';
+$full_name = $sex = $age = $address = $phone_number = '';
 $civil_status = $birthday = $philhealth_id = $bp = $temperature = '';
 $rr = $hr = $pr = $weight = $height = $diagnosis = $treatment = '';
 $last_checkup_date = $next_followup_date = '';
@@ -41,7 +41,6 @@ if ($patient_id) {
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $qr_code = $_POST['qr_code'];
     $full_name = $_POST['full_name'];
     $sex = $_POST['sex'];
     $age = $_POST['age'];
@@ -64,8 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($patient_id) {
         // Update the record
-        $stmt = $conn->prepare("UPDATE patients SET qr_code=?, full_name=?, sex=?, age=?, address=?, phone_number=?, civil_status=?, birthday=?, philhealth_id=?, bp=?, temperature=?, rr=?, hr=?, pr=?, weight=?, height=?, diagnosis=?, treatment=?, last_checkup_date=?, next_followup_date=? WHERE patient_id=?");
-$stmt->bind_param("sssssssssssssssssssss", $qr_code, $full_name, $sex, $age, $address, $phone_number, $civil_status, $birthday, $philhealth_id, $bp, $temperature, $rr, $hr, $pr, $weight, $height, $diagnosis, $treatment, $last_checkup_date, $next_followup_date, $patient_id);
+        $stmt = $conn->prepare("UPDATE patients SET  full_name=?, sex=?, age=?, address=?, phone_number=?, civil_status=?, birthday=?, philhealth_id=?, bp=?, temperature=?, rr=?, hr=?, pr=?, weight=?, height=?, diagnosis=?, treatment=?, last_checkup_date=?, next_followup_date=? WHERE patient_id=?");
+$stmt->bind_param("ssssssssssssssssssss", $full_name, $sex, $age, $address, $phone_number, $civil_status, $birthday, $philhealth_id, $bp, $temperature, $rr, $hr, $pr, $weight, $height, $diagnosis, $treatment, $last_checkup_date, $next_followup_date, $patient_id);
 
         $stmt->execute();
         $stmt->close();
@@ -73,9 +72,9 @@ $stmt->bind_param("sssssssssssssssssssss", $qr_code, $full_name, $sex, $age, $ad
 
     } else {
         // Insert a new record
-        $stmt = $conn->prepare("INSERT INTO patients (qr_code, full_name, sex, age, address, phone_number, civil_status, birthday, philhealth_id, bp, temperature, rr, hr, pr, weight, height, diagnosis, treatment, last_checkup_date, next_followup_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO patients ( full_name, sex, age, address, phone_number, civil_status, birthday, philhealth_id, bp, temperature, rr, hr, pr, weight, height, diagnosis, treatment, last_checkup_date, next_followup_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        $stmt->bind_param("ssssssssssssssssssss", $qr_code, $full_name, $sex, $age, $address, $phone_number, $civil_status, $birthday, $philhealth_id, $bp, $temperature, $rr, $hr, $pr, $weight, $height, $diagnosis, $treatment, $last_checkup_date, $next_followup_date);
+        $stmt->bind_param("sssssssssssssssssss",  $full_name, $sex, $age, $address, $phone_number, $civil_status, $birthday, $philhealth_id, $bp, $temperature, $rr, $hr, $pr, $weight, $height, $diagnosis, $treatment, $last_checkup_date, $next_followup_date);
         
 
         $stmt->execute();
@@ -110,10 +109,7 @@ $stmt->bind_param("sssssssssssssssssssss", $qr_code, $full_name, $sex, $age, $ad
             </div>
             <div class="card-body">
               <form method="post">
-                <div class="form-group">
-                  <label for="qr_code">QR Code</label>
-                  <input type="text" class="form-control" id="qr_code" name="qr_code" value="<?php echo $qr_code; ?>" required>
-                </div>
+                
                 <div class="form-group">
                   <label for="full_name">Full Name</label>
                   <input type="text" class="form-control" id="full_name" name="full_name" value="<?php echo $full_name; ?>" required>

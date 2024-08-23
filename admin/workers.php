@@ -39,6 +39,7 @@
         <div class="col-lg-12">
           <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <a href="edit_user.php" class="btn btn-primary m-2">+ Register New Worker</a>
             </div>
             <div class="table-responsive p-3">
               <table class="table align-items-center table-flush table-hover" id="dataTableHover">

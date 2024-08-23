@@ -39,14 +39,15 @@
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                </div>
+                  <a href="edit_patient.php" class="btn btn-primary m-2">+ Register New Patient</a>
+                  </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
                       <tr>
                   
                       <th>Patient ID</th> 
-                      <th>QR Code</th> 
+                      <th>QR Code Link</th> 
                       <th>Full Name</th> 
                       <th>Sex</th> 
                       <th>Age</th> 

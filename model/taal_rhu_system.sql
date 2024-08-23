@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2024 at 05:23 PM
+-- Generation Time: Aug 23, 2024 at 03:01 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -249,8 +249,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password_hash`, `email`, `full_name`, `role`, `last_login`, `date_created`) VALUES
-(1, 'admin1', '$2y$10$yRDq0XEnbE/fu/h6GGSPc.VGMOUTJzNoH5fM/PfbOFxEb04w.o0VW', 'admin1@example.com', 'Admin One', 'admin', '2024-08-13 04:02:00', '2024-08-21 14:23:49'),
-(2, 'admin2', 'hashedpassword2', 'admin2@example.com', 'Admin Two', 'admin', '2024-08-06 14:47:03', '2024-08-21 14:23:49'),
+(1, 'JuanDelaCruz', '$2y$10$yRDq0XEnbE/fu/h6GGSPc.VGMOUTJzNoH5fM/PfbOFxEb04w.o0VW', 'admin1@example.com', 'Admin One', 'admin', '2024-08-23 12:38:28', '2024-08-21 14:23:49'),
+(2, 'admin2', '$2y$10$spiMfFrZMZjTO10EsiqrAef9.3uh0GGx98wAzr59HYyS1d3m3zgci', 'admin2@example.com', 'Admin Two', 'admin', '2024-08-23 12:39:45', '2024-08-21 14:23:49'),
 (3, 'healthworker1', '$2y$10$yRDq0XEnbE/fu/h6GGSPc.VGMOUTJzNoH5fM/PfbOFxEb04w.o0VW', 'hw1@example.com', 'Health Worker One', 'health_worker', '2024-08-14 03:29:54', '2024-08-21 14:23:49'),
 (4, 'healthworker2', 'hashedpassword4', 'hw2@example.com', 'Health Worker Two', 'health_worker', '2024-08-06 14:47:03', '2024-08-21 14:23:49'),
 (5, 'healthworker3', 'hashedpassword5', 'hw3@example.com', 'Health Worker Three', 'health_worker', '2024-08-06 14:47:03', '2024-08-21 14:23:49'),
