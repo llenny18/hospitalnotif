@@ -30,7 +30,6 @@
       if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $username = $row['username'];
-        $password_hash = $row['password_hash']; // Typically, you wouldn't prepopulate a password hash in a form
         $email = $row['email'];
         $full_name = $row['full_name'];
         $role = $row['role'];
@@ -40,14 +39,14 @@
     // Handle form submission
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $username = $_POST['username'];
-      $password_hash = $_POST['password']; // Hash the password
+      $password_hash = password_hash($row['password_hash'], PASSWORD_DEFAULT); // Hash the password
       $email = $_POST['email'];
       $full_name = $_POST['full_name'];
       $role = $_POST['role'];
 
       if (isset($_GET['user_id'])) {
         // Update the record
-        $sql = "UPDATE users SET username='$username', password_hash='$password_hash', email='$email', full_name='$full_name', role='$role' WHERE user_id=$user_id";
+        $sql = "UPDATE users SET username='$username',  email='$email', full_name='$full_name', role='$role' WHERE user_id=$user_id";
       } else {
         // Insert a new record
         $sql = "INSERT INTO users (username, password_hash, email, full_name, role) VALUES ('$username', '$password_hash', '$email', '$full_name', '$role')";
@@ -96,10 +95,13 @@
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>" required>
         </div>
+        <?php if (!isset($_GET['user_id'])) { ?>
         <div class="form-group">
             <label for="password">Password</label>
             <input type="text" class="form-control" id="password" value="<?php echo $password_hash; ?>" name="password" required>
         </div>
+        <?php } ?>
+
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>" required>
