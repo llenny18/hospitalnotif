@@ -57,8 +57,22 @@ function displayTable($conn, $tableName, $query, $columns) {
             else if ($tableName == "medical_records"){
                 echo "<td><a href='edit_mrecords.php?record_id=".$row['record_id']."'  class='btn btn-primary m-1'>Edit</a><a href='delete.php?idval=".$row['record_id']."&table=$tableName&link=m_records&idname=record_id'  class='btn btn-danger m-1'>Delete</a>
                 </td>";
-
+            }
+            else if ($tableName == "pregnants"){
+                echo "<td>
+                <a href='pregnant_records.php?id=".$row['id']."'  class='btn btn-success m-1'>View Immunization Records</a>
                 
+                <a href='manage_pregnant.php?pregnantid=".$row['id']."'  class='btn btn-primary m-1'>Edit</a>
+                <a href='delete.php?idval=".$row['id']."&table=$tableName&link=pregnants&idname=id'  class='btn btn-danger m-1'>Delete</a>
+                </td>";
+            }
+            else if ($tableName == "child"){
+                echo "<td>
+                <a href='child_records.php?id=".$row['id']."'  class='btn btn-success m-1'>View Immunization Records</a>
+                <a href='manage_child.php?childid=".$row['id']."'  class='btn btn-primary m-1'>Edit</a>
+                
+                <a href='delete.php?idval=".$row['id']."&table=$tableName&link=childs&idname=id'  class='btn btn-danger m-1'>Delete</a>
+                </td>";
             }
             
             echo "</tr>";

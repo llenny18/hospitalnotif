@@ -22,7 +22,7 @@
 
 
 $patient_id = isset($_GET['pid']) ? $_GET['pid'] : '';
-$qr_code = $full_name = $sex = $age = $address = $phone_number = '';
+$full_name = $sex = $age = $address = $phone_number = '';
 $civil_status = $birthday = $philhealth_id = $bp = $temperature = '';
 $rr = $hr = $pr = $weight = $height = $diagnosis = $treatment = '';
 $last_checkup_date = $next_followup_date = '';
@@ -41,7 +41,6 @@ if ($patient_id) {
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $qr_code = $_POST['qr_code'];
     $full_name = $_POST['full_name'];
     $sex = $_POST['sex'];
     $age = $_POST['age'];
@@ -64,8 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($patient_id) {
         // Update the record
-        $stmt = $conn->prepare("UPDATE patients SET qr_code=?, full_name=?, sex=?, age=?, address=?, phone_number=?, civil_status=?, birthday=?, philhealth_id=?, bp=?, temperature=?, rr=?, hr=?, pr=?, weight=?, height=?, diagnosis=?, treatment=?, last_checkup_date=?, next_followup_date=? WHERE patient_id=?");
-$stmt->bind_param("sssssssssssssssssssss", $qr_code, $full_name, $sex, $age, $address, $phone_number, $civil_status, $birthday, $philhealth_id, $bp, $temperature, $rr, $hr, $pr, $weight, $height, $diagnosis, $treatment, $last_checkup_date, $next_followup_date, $patient_id);
+        $stmt = $conn->prepare("UPDATE patients SET  full_name=?, sex=?, age=?, address=?, phone_number=?, civil_status=?, birthday=?, philhealth_id=?, bp=?, temperature=?, rr=?, hr=?, pr=?, weight=?, height=?, diagnosis=?, treatment=?, last_checkup_date=?, next_followup_date=? WHERE patient_id=?");
+$stmt->bind_param("ssssssssssssssssssss", $full_name, $sex, $age, $address, $phone_number, $civil_status, $birthday, $philhealth_id, $bp, $temperature, $rr, $hr, $pr, $weight, $height, $diagnosis, $treatment, $last_checkup_date, $next_followup_date, $patient_id);
 
         $stmt->execute();
         $stmt->close();
@@ -73,9 +72,9 @@ $stmt->bind_param("sssssssssssssssssssss", $qr_code, $full_name, $sex, $age, $ad
 
     } else {
         // Insert a new record
-        $stmt = $conn->prepare("INSERT INTO patients (qr_code, full_name, sex, age, address, phone_number, civil_status, birthday, philhealth_id, bp, temperature, rr, hr, pr, weight, height, diagnosis, treatment, last_checkup_date, next_followup_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO patients ( full_name, sex, age, address, phone_number, civil_status, birthday, philhealth_id, bp, temperature, rr, hr, pr, weight, height, diagnosis, treatment, last_checkup_date, next_followup_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        $stmt->bind_param("ssssssssssssssssssss", $qr_code, $full_name, $sex, $age, $address, $phone_number, $civil_status, $birthday, $philhealth_id, $bp, $temperature, $rr, $hr, $pr, $weight, $height, $diagnosis, $treatment, $last_checkup_date, $next_followup_date);
+        $stmt->bind_param("sssssssssssssssssss",  $full_name, $sex, $age, $address, $phone_number, $civil_status, $birthday, $philhealth_id, $bp, $temperature, $rr, $hr, $pr, $weight, $height, $diagnosis, $treatment, $last_checkup_date, $next_followup_date);
         
 
         $stmt->execute();
@@ -106,14 +105,11 @@ $stmt->bind_param("sssssssssssssssssssss", $qr_code, $full_name, $sex, $age, $ad
           <!-- General Element -->
           <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">General Element</h6>
+              
             </div>
             <div class="card-body">
               <form method="post">
-                <div class="form-group">
-                  <label for="qr_code">QR Code</label>
-                  <input type="text" class="form-control" id="qr_code" name="qr_code" value="<?php echo $qr_code; ?>" required>
-                </div>
+                
                 <div class="form-group">
                   <label for="full_name">Full Name</label>
                   <input type="text" class="form-control" id="full_name" name="full_name" value="<?php echo $full_name; ?>" required>
@@ -185,7 +181,19 @@ $stmt->bind_param("sssssssssssssssssssss", $qr_code, $full_name, $sex, $age, $ad
                 </div>
                 <div class="form-group">
                   <label for="diagnosis">Diagnosis</label>
-                  <textarea class="form-control" id="diagnosis" name="diagnosis" rows="3"><?php echo $diagnosis; ?></textarea>
+                  <select class="form-control" id="diagnosis" name="diagnosis">
+    <option value="Animal bite" <?php echo ($diagnosis == 'Animal bite') ? 'selected' : ''; ?>>Animal bite</option>
+    <option value="Dental care" <?php echo ($diagnosis == 'Dental care') ? 'selected' : ''; ?>>Dental care</option>
+    <option value="Family planning" <?php echo ($diagnosis == 'Family planning') ? 'selected' : ''; ?>>Family planning</option>
+    <option value="National tuberculosis program" <?php echo ($diagnosis == 'National tuberculosis program') ? 'selected' : ''; ?>>National tuberculosis program</option>
+    <option value="Non-communicable disease" <?php echo ($diagnosis == 'Non-communicable disease') ? 'selected' : ''; ?>>Non-communicable disease</option>
+    <option value="Nutrition" <?php echo ($diagnosis == 'Nutrition') ? 'selected' : ''; ?>>Nutrition</option>
+    <option value="Maternal and child" <?php echo ($diagnosis == 'Maternal and child') ? 'selected' : ''; ?>>Maternal and child</option>
+    <option value="National immunization program" <?php echo ($diagnosis == 'National immunization program') ? 'selected' : ''; ?>>National immunization program</option>
+    <option value="ESU epidemiology surveillance" <?php echo ($diagnosis == 'ESU epidemiology surveillance') ? 'selected' : ''; ?>>ESU epidemiology surveillance</option>
+    <option value="Laboratory services" <?php echo ($diagnosis == 'Laboratory services') ? 'selected' : ''; ?>>Laboratory services</option>
+</select>
+
                 </div>
                 <div class="form-group">
                   <label for="treatment">Treatment</label>

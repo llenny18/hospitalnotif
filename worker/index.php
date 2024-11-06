@@ -13,11 +13,38 @@
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  
 </head>
 
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->
+
+    <?php
+
+
+// Query to get the data from the view
+// SQL query to get data from the view
+$sql = "SELECT diagnosis, category_count FROM patient_category_counts";
+$result = $conn->query($sql);
+
+// Initialize arrays for labels and data
+$labels = [];
+$data = [];
+
+// Fetch data
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = $row['diagnosis'];
+        $data[] = $row['category_count'];
+    }
+} else {
+    echo "No data found";
+}
+?>
+
     <?php include("./nav.php"); ?>
         <!-- Topbar -->
 
@@ -33,86 +60,87 @@
 
           <div class="row mb-3">
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-12 col-md-12 mb-4">
               <div class="card h-100">
                 <div class="card-body">
-                  <div class="row align-items-center">
+                  <div class="row align-items-center justify-content-between">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Working Scanned QR Codes</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= countQR($conn); ?></div>
+                 
                       <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-<?php checkColor(countQRM($conn)) ?> mr-2"><i class="fa fa-arrow-<?php checkArrow(countQRM($conn)) ?>"></i> <?= abs(countQRM($conn)); checkText(countQRM($conn));  ?> </span>
-                        <span>Since last month</span>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-primary"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">No. of Patient's Recent Chekups</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= countPatient($conn);  ?></div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-<?php checkColor(countPatientM($conn)) ?> mr-2"><i class="fas fa-arrow-<?php checkArrow(countPatientM($conn)) ?>"></i> <?= abs(countPatientM($conn)); checkText(countPatientM($conn));  ?> </span>
-                        <span>Since last month</span>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-user fa-2x text-success"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- New User Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">No. of Health Workers</div>
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= countWorker($conn); ?></div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-<?php checkColor(countWorkerM($conn)) ?> mr-2"><i class="fas fa-arrow-<?php checkArrow(countWorkerM($conn)) ?>"></i> <?= abs(countWorkerM($conn)); checkText(countWorkerM($conn));  ?></span>
-                        <span>Since last month</span>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-users fa-2x text-info"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total Medical Records</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?= countRecords($conn);  ?></div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-<?php checkColor(countRecordM($conn)) ?> mr-2"><i class="fas fa-arrow-<?php checkArrow(countRecordM($conn)) ?>"></i> <?= abs(countRecordM($conn)); checkText(countRecordM($conn));  ?> </span>
-                        <span>Since last month</span>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-warning"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                      <div >
+        <canvas id="diagnosisChart" s></canvas>
+    </div>
+    <?php 
+    $newString = str_replace('"', "", json_encode($data));
+    echo "<script> console.log(".$newString.") </script> " ?>
 
+    <script>
+    // Data for the pie chart, dynamically populated with PHP
+    const data = {
+      labels: <?php echo json_encode($labels); ?>,
+      datasets: [{
+        data: <?php echo $newString; ?>,
+        backgroundColor: [
+          '#6A0572', '#9E79B9', '#FFC7A2', '#E08E79', '#789D4A', '#8FA998', '#505BDA', '#9CB6FF', '#DF6589', '#FFC75F'
+        ],
+        hoverOffset: 4
+      }]
+    };
+
+    // Configuration for the pie chart
+    const config = {
+      type: 'pie',
+      data: data,
+      options: {
+        plugins: {
+          datalabels: {
+            color: '#fff',
+            font: {
+              weight: 'bold',
+              size: 12
+            },
+            formatter: (value, ctx) => {
+              const label = ctx.chart.data.labels[ctx.dataIndex];
+              const total = ctx.dataset.data.reduce((acc, value) => acc + value, 0);
+              const percentage = ((value / total) * 100).toFixed(1);
+              return `${label}\n${percentage}%`;
+            },
+            anchor: 'center',
+            align: 'center',
+            offset: 0
+          },
+          tooltip: {
+            callbacks: {
+              label: function(tooltipItem) {
+                const dataset = tooltipItem.dataset;
+                const currentValue = dataset.data[tooltipItem.dataIndex];
+                const total = dataset.data.reduce((acc, value) => acc + value, 0);
+                const percentage = ((currentValue / total) * 100).toFixed(2);
+                return `${tooltipItem.label}: ${percentage}%`;
+              }
+            }
+          },
+          legend: {
+            position: 'top'
+          }
+        }
+      },
+      plugins: [ChartDataLabels]
+    };
+
+    // Create the chart
+    const ctx = document.getElementById('diagnosisChart').getContext('2d');
+    new Chart(ctx, config);
+  </script>
+
+                      </div>
+                    </div>
+                 
+                  </div>
+                </div>
+              </div>
+            </div>
+           
             <!-- Area Chart -->
             <div class="col-xl-12 col-lg-12">
               <div class="card mb-4">
@@ -127,9 +155,7 @@
                 </div>
               </div>
             </div>
-          </div>
-          <!--Row-->
-
+           
 
           <!-- Modal Logout -->
           <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
@@ -204,8 +230,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Area Chart Example
-var ctx = document.getElementById("myAreaChart");
-var myLineChart = new Chart(ctx, {
+var ctx1 = document.getElementById("myAreaChart");
+var myLineChart = new Chart(ctx1, {
   type: 'line',
   data: {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -294,7 +320,7 @@ var myLineChart = new Chart(ctx, {
 });
 
 
-  </script>   
+  </script>  
 </body>
 
 </html>

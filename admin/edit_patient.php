@@ -105,7 +105,7 @@ $stmt->bind_param("ssssssssssssssssssss", $full_name, $sex, $age, $address, $pho
           <!-- General Element -->
           <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-primary">General Element</h6>
+              
             </div>
             <div class="card-body">
               <form method="post">
@@ -181,7 +181,19 @@ $stmt->bind_param("ssssssssssssssssssss", $full_name, $sex, $age, $address, $pho
                 </div>
                 <div class="form-group">
                   <label for="diagnosis">Diagnosis</label>
-                  <textarea class="form-control" id="diagnosis" name="diagnosis" rows="3"><?php echo $diagnosis; ?></textarea>
+                  <select class="form-control" id="diagnosis" name="diagnosis">
+    <option value="Animal bite" <?php echo ($diagnosis == 'Animal bite') ? 'selected' : ''; ?>>Animal bite</option>
+    <option value="Dental care" <?php echo ($diagnosis == 'Dental care') ? 'selected' : ''; ?>>Dental care</option>
+    <option value="Family planning" <?php echo ($diagnosis == 'Family planning') ? 'selected' : ''; ?>>Family planning</option>
+    <option value="National tuberculosis program" <?php echo ($diagnosis == 'National tuberculosis program') ? 'selected' : ''; ?>>National tuberculosis program</option>
+    <option value="Non-communicable disease" <?php echo ($diagnosis == 'Non-communicable disease') ? 'selected' : ''; ?>>Non-communicable disease</option>
+    <option value="Nutrition" <?php echo ($diagnosis == 'Nutrition') ? 'selected' : ''; ?>>Nutrition</option>
+    <option value="Maternal and child" <?php echo ($diagnosis == 'Maternal and child') ? 'selected' : ''; ?>>Maternal and child</option>
+    <option value="National immunization program" <?php echo ($diagnosis == 'National immunization program') ? 'selected' : ''; ?>>National immunization program</option>
+    <option value="ESU epidemiology surveillance" <?php echo ($diagnosis == 'ESU epidemiology surveillance') ? 'selected' : ''; ?>>ESU epidemiology surveillance</option>
+    <option value="Laboratory services" <?php echo ($diagnosis == 'Laboratory services') ? 'selected' : ''; ?>>Laboratory services</option>
+</select>
+
                 </div>
                 <div class="form-group">
                   <label for="treatment">Treatment</label>

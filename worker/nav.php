@@ -60,12 +60,14 @@ if(!isset($_SESSION['worker_id'])){
           <i class="fas fa-fw fa-table"></i>
           <span>Hospital Records</span>
         </a>
-        <div id="collapseTable" class="collapse <?php if (basename($_SERVER['REQUEST_URI']) == "patients.php" || basename($_SERVER['REQUEST_URI']) == "m_records.php") { echo ' show ';} ?>" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+        <div id="collapseTable" class="collapse <?php if (basename($_SERVER['REQUEST_URI']) == "patients.php" || basename($_SERVER['REQUEST_URI']) == "m_records.php" || basename($_SERVER['REQUEST_URI']) == "pregnants.php" || basename($_SERVER['REQUEST_URI']) == "childs.php") { echo ' show ';} ?>" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Records</h6>
             
           <a class="collapse-item <?php if (basename($_SERVER['REQUEST_URI']) == "patients.php" ) { echo ' active ';} ?>" href="patients.php">Patient List</a>
           <a class="collapse-item <?php if ( basename($_SERVER['REQUEST_URI']) == "m_records.php") { echo ' active ';} ?>" href="m_records.php">Medical Records List</a>
+          <a class="collapse-item <?php if ( basename($_SERVER['REQUEST_URI']) == "pregnants.php") { echo ' active ';} ?>" href="pregnants.php">Pregnant List</a>
+          <a class="collapse-item <?php if ( basename($_SERVER['REQUEST_URI']) == "childs.php") { echo ' active ';} ?>" href="childs.php">Child List</a>
           
           </div>
         </div>
