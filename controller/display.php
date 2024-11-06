@@ -61,6 +61,7 @@ function displayTable($conn, $tableName, $query, $columns) {
             else if ($tableName == "pregnants"){
                 echo "<td>
                 <a href='pregnant_records.php?id=".$row['id']."'  class='btn btn-success m-1'>View Immunization Records</a>
+                <a href='prenatals.php?pid=".$row['id']."'  class='btn btn-success m-1'>View Prenatal Checkups</a>
                 
                 <a href='manage_pregnant.php?pregnantid=".$row['id']."'  class='btn btn-primary m-1'>Edit</a>
                 <a href='delete.php?idval=".$row['id']."&table=$tableName&link=pregnants&idname=id'  class='btn btn-danger m-1'>Delete</a>

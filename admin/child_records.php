@@ -41,6 +41,9 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <a href="manage_record_child.php" class="btn btn-primary m-2">+ Register New Child Immunization Record</a>
                   </div>
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <a href="child_table.php?pid=<?= $_GET['id'] ?>"  target="_blank" class="btn btn-primary m-2"> Print</a>
+                  </div>
                 <div class="table-responsive p-3">
                 <?php
 

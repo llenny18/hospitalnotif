@@ -45,6 +45,9 @@
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <a href="manage_record_pregnant.php" class="btn btn-primary m-2">+ Register New Pregnant Immunization Record</a>
                   </div>
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <a href="manage_prenatals.php" class="btn btn-primary m-2">+ Register New Prenatal Checkup Record</a>
+                  </div>
                 <div class="table-responsive p-3">
                 <table class="table align-items-center table-flush table-hover" id="dataTableHover">
     <thead class="thead-light">

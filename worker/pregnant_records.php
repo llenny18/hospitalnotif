@@ -41,6 +41,10 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <a href="manage_record_pregnant.php" class="btn btn-primary m-2">+ Register New Pregnant Immunization Record</a>
                   </div>
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <a href="pregnant_table.php?pid=<?= $_GET['id'] ?>" target="_blank" class="btn btn-primary m-2">Print</a>
+                  </div>
+                  
                 <div class="table-responsive p-3">
                 <?php
 
