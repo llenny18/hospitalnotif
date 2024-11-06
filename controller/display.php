@@ -46,7 +46,7 @@ function displayTable($conn, $tableName, $query, $columns) {
                 echo "<td><a href='edit_qrcodes.php?qrid=".$row['qr_id']."'  class='btn btn-primary m-1'>Edit</a><a href='delete.php?idval=".$row['qr_id']."&table=$tableName&link=qr_codes&idname=qr_id'  class='btn btn-danger m-1'>Delete</a></td>";
             }
             else if ($tableName == "sms_notifications"){
-                echo "<td><a href='edit_sms.php?sms_id=".$row['sms_id']."'  class='btn btn-primary m-1'>Edit</a><a href='delete.php?idval=".$row['sms_id']."&table=$tableName&link=sms_sent&idname=sms_id'  class='btn btn-danger m-1'>Delete</a></td>";
+                echo "<td><a href='delete.php?idval=".$row['sms_id']."&table=$tableName&link=sms_sent_pat&idname=sms_id'  class='btn btn-danger m-1'>Delete</a></td>";
             }
             else if ($tableName == "patients"){
                 echo "<td><a href='edit_patient.php?pid=".$row['patient_id']."'  class='btn btn-primary m-1'>Edit</a><a href='delete.php?idval=".$row['patient_id']."&table=$tableName&link=patients&idname=patient_id'  class='btn btn-danger m-1'>Delete</a>";

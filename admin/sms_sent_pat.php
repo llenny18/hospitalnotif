@@ -24,11 +24,11 @@
     <!-- Container Fluid-->
     <div class="container-fluid" id="container-wrapper">
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">SMS Notification List</h1>
+        <h1 class="h3 mb-0 text-gray-800">SMS Notification List for Patients</h1>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="./">Home</a></li>
 
-          <li class="breadcrumb-item" aria-current="page">SMS Notification List</li>
+          <li class="breadcrumb-item" aria-current="page">SMS Notification List for Patients</li>
         </ol>
       </div>
 
@@ -39,7 +39,7 @@
         <div class="col-lg-12">
           <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <a href="edit_sms.php" class="btn btn-primary m-2">+ Insert New Record</a>
+            <a href="edit_sms_pat.php" class="btn btn-primary m-2">+ Insert New Record</a>
             </div>
             <div class="table-responsive p-3">
               <table class="table align-items-center table-flush table-hover" id="dataTableHover">
@@ -65,7 +65,7 @@
                   <?php displayTable(
                     $conn,
                     'sms_notifications',
-                    "SELECT * FROM sms_notifications",
+                    "SELECT * FROM sms_notifications where p_type= 'patient'",
                     ['sms_id', 'patient_id', 'message', 'sent_at']
                   ); ?>
 

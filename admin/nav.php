@@ -49,17 +49,18 @@ if(!isset($_SESSION['admin_id'])){
           </div>
         </div>
       </li>
-      <li class="nav-item <?php if (basename($_SERVER['REQUEST_URI']) == "qr_codes.php" || basename($_SERVER['REQUEST_URI']) == "sms_sent.php") { echo ' active ';} ?>">
+      <li class="nav-item <?php if (basename($_SERVER['REQUEST_URI']) == "qr_codes.php" || basename($_SERVER['REQUEST_URI']) == "sms_sent_preg.php" || basename($_SERVER['REQUEST_URI']) == "sms_sent_pat.php") { echo ' active ';} ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
           aria-controls="collapseForm ">
           <i class="fab fa-fw fa-wpforms"></i>
           <span>Access Control</span>
         </a>
-        <div id="collapseForm" class="collapse <?php if (basename($_SERVER['REQUEST_URI']) == "qr_codes.php" || basename($_SERVER['REQUEST_URI']) == "sms_sent.php") { echo ' show ';} ?>" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+        <div id="collapseForm" class="collapse <?php if (basename($_SERVER['REQUEST_URI']) == "qr_codes.php" || basename($_SERVER['REQUEST_URI']) == "sms_sent_pat.php" || basename($_SERVER['REQUEST_URI']) == "sms_sent_preg.php") { echo ' show ';} ?>" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Records</h6>
           <a class="collapse-item <?php if (basename($_SERVER['REQUEST_URI']) == "qr_codes.php") { echo ' active ';} ?>" href="qr_codes.php">QR Codes</a>
-            <a class="collapse-item <?php if (basename($_SERVER['REQUEST_URI']) == "sms_sent.php") { echo ' active ';} ?>" href="sms_sent.php">SMS Notification</a>
+            <a class="collapse-item <?php if (basename($_SERVER['REQUEST_URI']) == "sms_sent_preg.php") { echo ' active ';} ?>" href="sms_sent_preg.php">Pregnant SMS Notification</a>
+            <a class="collapse-item <?php if (basename($_SERVER['REQUEST_URI']) == "sms_sent_pat.php") { echo ' active ';} ?>" href="sms_sent_pat.php">Patient SMS Notification</a>
           </div>
         </div>
       </li>
@@ -73,7 +74,7 @@ if(!isset($_SESSION['admin_id'])){
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
           aria-controls="collapseTable">
           <i class="fas fa-fw fa-table"></i>
-          <span>Hospital Records</span>
+          <span>Hospital </span>
         </a>
         <div id="collapseTable" class="collapse <?php if (basename($_SERVER['REQUEST_URI']) == "patients.php" || basename($_SERVER['REQUEST_URI']) == "m_records.php" || basename($_SERVER['REQUEST_URI']) == "pregnants.php" || basename($_SERVER['REQUEST_URI']) == "childs.php") { echo ' show ';} ?>" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
