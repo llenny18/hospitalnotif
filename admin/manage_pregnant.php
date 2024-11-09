@@ -20,10 +20,10 @@
     <!-- Sidebar -->
     <?php include("./nav.php");
 
+// Verify table field names in your SQL statements match the database
 $pregnant_id = isset($_GET['pregnantid']) ? $_GET['pregnantid'] : '';
 $mother_name = $mother_birthday = $mother_cell_phone = $mother_landline = $mother_blood_type = $mother_job = $father_name = $father_birthday = $father_cell_phone = $father_landline = $father_blood_type = $father_job = $child1_name = $child1_birthday = $child2_name = $child2_birthday = $child3_name = $child3_birthday = $address = $emergency_contact_name = $emergency_contact_relationship = $emergency_contact_birthday = $emergency_contact_cell_phone = $emergency_contact_landline = '';
 
-// If editing an existing record, fetch its data
 if ($pregnant_id) {
     $stmt = $conn->prepare("SELECT * FROM pregnants WHERE id = ?");
     $stmt->bind_param("i", $pregnant_id);
@@ -35,8 +35,8 @@ if ($pregnant_id) {
     $stmt->close();
 }
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form values
     $mother_name = $_POST['mother_name'];
     $mother_birthday = $_POST['mother_birthday'];
     $mother_cell_phone = $_POST['mother_cell_phone'];
@@ -63,24 +63,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $emergency_contact_landline = $_POST['emergency_contact_landline'];
 
     if ($pregnant_id) {
-        // Update the record
+        // Update record if pregnant_id is set
         $stmt = $conn->prepare("UPDATE pregnants SET mother_name=?, mother_birthday=?, mother_cell_phone=?, mother_landline=?, mother_blood_type=?, mother_job=?, father_name=?, father_birthday=?, father_cell_phone=?, father_landline=?, father_blood_type=?, father_job=?, child1_name=?, child1_birthday=?, child2_name=?, child2_birthday=?, child3_name=?, child3_birthday=?, address=?, emergency_contact_name=?, emergency_contact_relationship=?, emergency_contact_birthday=?, emergency_contact_cell_phone=?, emergency_contact_landline=? WHERE id=?");
         $stmt->bind_param("sssssssssssssssssssssssssi", $mother_name, $mother_birthday, $mother_cell_phone, $mother_landline, $mother_blood_type, $mother_job, $father_name, $father_birthday, $father_cell_phone, $father_landline, $father_blood_type, $father_job, $child1_name, $child1_birthday, $child2_name, $child2_birthday, $child3_name, $child3_birthday, $address, $emergency_contact_name, $emergency_contact_relationship, $emergency_contact_birthday, $emergency_contact_cell_phone, $emergency_contact_landline, $pregnant_id);
     } else {
-        // Insert a new record
-        $stmt = $conn->prepare("INSERT INTO pregnants (mother_name, mother_birthday, mother_cell_phone, mother_landline, mother_blood_type, mother_job, father_name, father_birthday, father_cell_phone, father_landline, father_blood_type, father_job, child1_name, child1_birthday, child2_name, child2_birthday, child3_name, child3_birthday, address, emergency_contact_name, emergency_contact_relationship, emergency_contact_birthday, emergency_contact_cell_phone, emergency_contact_landline) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        // Insert new record if no pregnant_id is provided
+        $stmt = $conn->prepare("INSERT INTO pregnants (mother_name, mother_birthday, mother_cell_phone, mother_landline, mother_blood_type, mother_job, father_name, father_birthday, father_cell_phone, father_landline, father_blood_type, father_job, child1_name, child1_birthday, child2_name, child2_birthday, child3_name, child3_birthday, address, emergency_contact_name, emergency_contact_relationship, emergency_contact_birthday, emergency_contact_cell_phone, emergency_contact_landline) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssssssssssssssssssssss", $mother_name, $mother_birthday, $mother_cell_phone, $mother_landline, $mother_blood_type, $mother_job, $father_name, $father_birthday, $father_cell_phone, $father_landline, $father_blood_type, $father_job, $child1_name, $child1_birthday, $child2_name, $child2_birthday, $child3_name, $child3_birthday, $address, $emergency_contact_name, $emergency_contact_relationship, $emergency_contact_birthday, $emergency_contact_cell_phone, $emergency_contact_landline);
     }
 
     if ($stmt->execute()) {
-      echo "<script>alert('Record saved successfully!'); window.location.href='pregnants.php';</script>";
+        echo "<script>alert('Record saved successfully!'); window.location.href='pregnants.php';</script>";
     } else {
         echo "Error: " . $stmt->error;
     }
 
     $stmt->close();
 }
-$conn->close();
+
+
+
 ?>
         <!-- Topbar -->
 

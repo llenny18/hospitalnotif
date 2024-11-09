@@ -168,8 +168,10 @@
             <input type="date" class="form-control" id="expected_delivery_date" name="expected_delivery_date" value="<?php echo $expected_delivery_date; ?>" required>
         </div>
 
+        <br>
+        <hr>
         <!-- First Checkup Details -->
-        <h5>First Checkup</h5>
+        <h5 class="font-weight-bold">First Checkup</h5>
         <div class="form-group">
             <label for="first_checkup_date">Date:</label>
             <input type="date" class="form-control" id="first_checkup_date" name="first_checkup_date" value="<?php echo $first_checkup_date; ?>" required>
@@ -204,7 +206,9 @@
         </div>
 
         <!-- Second Checkup Details -->
-        <h5>Second Checkup</h5>
+        <br>
+        <hr>
+        <h5 class="font-weight-bold">Second Checkup</h5>
         <div class="form-group">
             <label for="second_checkup_date">Date:</label>
             <input type="date" class="form-control" id="second_checkup_date" name="second_checkup_date" value="<?php echo $second_checkup_date; ?>" required>
@@ -239,7 +243,9 @@
         </div>
 
         <!-- Third Checkup Details -->
-        <h5>Third Checkup</h5>
+        <br>
+        <hr>
+        <h5 class="font-weight-bold">Third Checkup</h5>
         <div class="form-group">
             <label for="third_checkup_date">Date:</label>
             <input type="date" class="form-control" id="third_checkup_date" name="third_checkup_date" value="<?php echo $third_checkup_date; ?>" required>

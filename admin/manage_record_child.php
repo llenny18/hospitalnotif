@@ -53,7 +53,7 @@
         }
 
         if ($stmt->execute()) {
-            echo "<script>alert('Record saved successfully!'); window.location.href='child.php';</script>";
+            echo "<script>alert('Record saved successfully!'); window.location.href='childs.php';</script>";
         } else {
             echo "Error: " . $stmt->error;
         }
