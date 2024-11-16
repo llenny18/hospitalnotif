@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $password = $_POST['password'];
 
   // Check if the email exists in the database
-  $query = "SELECT * FROM users WHERE email = ? or username = ? and role='admin'";
+  $query = "SELECT * FROM users WHERE (email = ? or username = ?) and role='admin'";
   if ($stmt = $conn->prepare($query)) {
       $stmt->bind_param('ss', $email, $email);
       $stmt->execute();
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Administrator Login</h1>
                   </div>
                   <form class="user" method="POST" action="">
                     <div class="form-group">

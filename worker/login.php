@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $password = $_POST['password'];
 
   // Check if the email exists in the database
-  $query = "SELECT * FROM users WHERE email = ? and role='health_worker'";
+  $query = "SELECT * FROM users WHERE (email = ? or username = ?) and role='health_worker'";
   if ($stmt = $conn->prepare($query)) {
-      $stmt->bind_param('s', $email);
+      $stmt->bind_param('ss', $email,$email);
       $stmt->execute();
       $result = $stmt->get_result();
       if ($result->num_rows > 0) {
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Health Worker Login</h1>
                   </div>
                   <form class="user" method="POST" action="">
                     <div class="form-group">

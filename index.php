@@ -137,7 +137,7 @@
                 <div class="col-md-5 offset-md-1">
                   <div class="detail-box">
                     <h1>
-                      Login as Adminstrator <br>
+                      Login as Administrator <br>
                       Input your Credentials then <br>
                       Manage the System
                     </h1>

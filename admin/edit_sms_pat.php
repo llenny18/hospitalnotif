@@ -35,11 +35,11 @@ include("../controller/sms.php"); ?>
                 // output data of each row
               $row = $result->fetch_assoc();
               $messageNew = "
-              Name: {$row['full_name']} <br>
-              Gender: {$row['sex']} <br>
-              Age: {$row['age']} <br>
-              Address: {$row['address']} <br>
-              Followup Checkup: {$row['next_followup_date']} <br> <br>
+              Name: {$row['full_name']} ,
+              Gender: {$row['sex']},
+              Age: {$row['age']} ,
+              Address: {$row['address']} ,
+              Followup Checkup: {$row['next_followup_date']} ,
 
               Message: $message
 
@@ -49,7 +49,7 @@ include("../controller/sms.php"); ?>
 
             if ($stmt->execute()) {
               
-              ?><script>console.log('<?php echo sendSms($row['phone_number'], $messageNew); ?>') </script> <?php
+               sendSms($row['phone_number'], $messageNew);
               }
 
 
@@ -60,7 +60,7 @@ include("../controller/sms.php"); ?>
             $stmt->close();
         }
 
-        echo "<script>alert('Record saved successfully for patients');</script>";
+        echo "<script>alert('SMS Successfully Sent!');</script>";
         echo "<script>window.location.href='sms_sent_pat.php';</script>";
     }
     ?>

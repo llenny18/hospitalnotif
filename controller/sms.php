@@ -1,23 +1,21 @@
 <?php
-// config.php
-return [
-    'api_key' => 'YOUR_SEMAPHORE_API_KEY',
-    'api_url' => 'https://api.semaphore.co/api/v4/messages',
-];
 
 
 
 // Function to send an SMS
-function sendSms($number, $message, $senderName = 'SENDER_NAME') {
-    global $config;
-    
-    // Initialize cURL
-    $ch = curl_init($config['api_url']);
+function sendSms($number, $message) {
+    $senderName = 'TaalRHUSys';
+    $api_key = 'fb04b87a696007ca315a4063fe805114';
+    $api_url = 'https://api.semaphore.co/api/v4/messages';
+
+    // Initialize cURL session
+    $ch = curl_init();
 
     // Configure cURL options
+    curl_setopt($ch, CURLOPT_URL, $api_url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
-        'apikey' => $config['api_key'],
+        'apikey' => $api_key,
         'number' => $number,
         'message' => $message,
         'sendername' => $senderName
@@ -26,6 +24,13 @@ function sendSms($number, $message, $senderName = 'SENDER_NAME') {
 
     // Execute the cURL request and get the response
     $response = curl_exec($ch);
+
+    // Check for cURL errors
+    if (curl_errno($ch)) {
+        $error_message = curl_error($ch);
+        curl_close($ch);
+        return "cURL Error: " . $error_message;
+    }
 
     // Close the cURL session
     curl_close($ch);
@@ -40,6 +45,7 @@ function sendSms($number, $message, $senderName = 'SENDER_NAME') {
         return "Failed to send SMS. Response: " . $response;
     }
 }
+
 
 // Usage Example
 // $number = "639XXXXXXXXX";  // Recipient's phone number, include country code

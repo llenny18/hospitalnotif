@@ -33,9 +33,9 @@ include("../controller/sms.php");
                 // output data of each row
               $row = $result->fetch_assoc();
               $messageNew = "
-              Name: {$row['mother_name']} <br>
-              Gender: Female <br>
-              Birthdate: {$row['mother_birthday']} <br> <br>
+              Name: {$row['mother_name']} ,
+              Gender: Female ,
+              Birthdate: {$row['mother_birthday']} ,
 
               Message: $message
 
@@ -46,10 +46,11 @@ include("../controller/sms.php");
 
             if ($stmt->execute()) {
               
-              ?><script>console.log('<?php echo sendSms($row['phone_number'], $messageNew); ?>') </script> <?php
-              }
+              sendSms($row['mother_cell_phone'], $messageNew);
+             }
 
-
+             echo "<script>alert('SMS Successfully Sent!');</script>";
+             echo "<script>window.location.href='sms_sent_preg.php';</script>";
               //sms
           } else {
               echo "Error: " . $stmt->error;
@@ -57,7 +58,7 @@ include("../controller/sms.php");
             $stmt->close();
         }
         
-        echo "<script>alert('Records saved successfully!'); window.location.href='sms_sent_preg.php';</script>";
+        
     }
     ?>
 
