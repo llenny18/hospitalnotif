@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($stmt->execute()) {
-      echo "<script>alert('Record saved successfully!'); window.location.href='children.php';</script>";
+      echo "<script>alert('Record saved successfully!'); window.location.href='childs.php';</script>";
     } else {
         echo "Error: " . $stmt->error;
     }

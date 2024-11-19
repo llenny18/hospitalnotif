@@ -96,7 +96,7 @@
                 <form method="post">
         <div class="form-group">
             <label for="patient_id">Patient ID</label>
-            <input type="text" class="form-control" id="patient_id" name="patient_id" value="<?php echo isset($patient_id) ? htmlspecialchars($patient_id) : ''; ?>" required>
+            <input type="text" class="form-control" id="patient_id" name="patient_id" value="<?php echo isset($patient_id) ? htmlspecialchars($patient_id) : rand(9999,99999); ?>" required>
         </div>
         <div class="form-group">
             <label for="checkup_date">Checkup Date</label>

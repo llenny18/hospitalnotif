@@ -71,8 +71,36 @@
 
         if ($checkup_id) {
             // Update existing record
-            $stmt = $conn->prepare("UPDATE prenatal_checkup SET patient_id=?, checkup_date=?, age=?, weight=?, height=?, bmi_status=?, last_menstrual_period=?, expected_delivery_date=?, first_checkup_date=?, first_checkup_weight=?, first_checkup_height=?, first_checkup_age_of_gestation=?, first_checkup_blood_pressure=?, first_checkup_nutritional_status=?, first_checkup_birth_plan=?, first_checkup_dental_check=?, second_checkup_date=?, second_checkup_weight=?, second_checkup_height=?, second_checkup_age_of_gestation=?, second_checkup_blood_pressure=?, second_checkup_nutritional_status=?, second_checkup_birth_plan=?, second_checkup_dental_check=?, third_checkup_date=?, third_checkup_weight=?, third_checkup_height=?, third_checkup_age_of_gestation=?, third_checkup_blood_pressure=?, third_checkup_nutritional_status=?, third_checkup_birth_plan=?, third_checkup_dental_check=? WHERE id=?");
-            $stmt->bind_param("isssssssssssssssssssssssssssssssssssi", $patient_id, $checkup_date, $age, $weight, $height, $bmi_status, $last_menstrual_period, $expected_delivery_date, $first_checkup_date, $first_checkup_weight, $first_checkup_height, $first_checkup_age_of_gestation, $first_checkup_blood_pressure, $first_checkup_nutritional_status, $first_checkup_birth_plan, $first_checkup_dental_check, $second_checkup_date, $second_checkup_weight, $second_checkup_height, $second_checkup_age_of_gestation, $second_checkup_blood_pressure, $second_checkup_nutritional_status, $second_checkup_birth_plan, $second_checkup_dental_check, $third_checkup_date, $third_checkup_weight, $third_checkup_height, $third_checkup_age_of_gestation, $third_checkup_blood_pressure, $third_checkup_nutritional_status, $third_checkup_birth_plan, $third_checkup_dental_check, $checkup_id);
+           $stmt = $conn->prepare("UPDATE prenatal_checkup 
+    SET 
+        patient_id = ?, checkup_date = ?, age = ?, weight = ?, height = ?, bmi_status = ?, 
+        last_menstrual_period = ?, expected_delivery_date = ?, first_checkup_date = ?, 
+        first_checkup_weight = ?, first_checkup_height = ?, first_checkup_age_of_gestation = ?, 
+        first_checkup_blood_pressure = ?, first_checkup_nutritional_status = ?, 
+        first_checkup_birth_plan = ?, first_checkup_dental_check = ?, 
+        second_checkup_date = ?, second_checkup_weight = ?, second_checkup_height = ?, 
+        second_checkup_age_of_gestation = ?, second_checkup_blood_pressure = ?, 
+        second_checkup_nutritional_status = ?, second_checkup_birth_plan = ?, 
+        second_checkup_dental_check = ?, third_checkup_date = ?, third_checkup_weight = ?, 
+        third_checkup_height = ?, third_checkup_age_of_gestation = ?, 
+        third_checkup_blood_pressure = ?, third_checkup_nutritional_status = ?, 
+        third_checkup_birth_plan = ?, third_checkup_dental_check = ? 
+    WHERE id = ?");
+$stmt->bind_param(
+    "sssssssssssssssssssssssssssssssss",
+    $patient_id, $checkup_date, $age, $weight, $height, $bmi_status,
+    $last_menstrual_period, $expected_delivery_date, $first_checkup_date,
+    $first_checkup_weight, $first_checkup_height, $first_checkup_age_of_gestation,
+    $first_checkup_blood_pressure, $first_checkup_nutritional_status,
+    $first_checkup_birth_plan, $first_checkup_dental_check, $second_checkup_date,
+    $second_checkup_weight, $second_checkup_height, $second_checkup_age_of_gestation,
+    $second_checkup_blood_pressure, $second_checkup_nutritional_status,
+    $second_checkup_birth_plan, $second_checkup_dental_check, $third_checkup_date,
+    $third_checkup_weight, $third_checkup_height, $third_checkup_age_of_gestation,
+    $third_checkup_blood_pressure, $third_checkup_nutritional_status,
+    $third_checkup_birth_plan, $third_checkup_dental_check, $checkup_id
+);
+
         } else {
             // Insert new record
             $stmt = $conn->prepare("INSERT INTO prenatal_checkup (patient_id, checkup_date, age, weight, height, bmi_status, last_menstrual_period, expected_delivery_date, first_checkup_date, first_checkup_weight, first_checkup_height, first_checkup_age_of_gestation, first_checkup_blood_pressure, first_checkup_nutritional_status, first_checkup_birth_plan, first_checkup_dental_check, second_checkup_date, second_checkup_weight, second_checkup_height, second_checkup_age_of_gestation, second_checkup_blood_pressure, second_checkup_nutritional_status, second_checkup_birth_plan, second_checkup_dental_check, third_checkup_date, third_checkup_weight, third_checkup_height, third_checkup_age_of_gestation, third_checkup_blood_pressure, third_checkup_nutritional_status, third_checkup_birth_plan, third_checkup_dental_check) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -80,7 +108,7 @@
         }
         
         if ($stmt->execute()) {
-            echo "<script>alert('Record saved successfully'); window.location='prenatal_checkups.php';</script>";
+            echo "<script>alert('Record saved successfully'); window.location='prenatals.php?pid=$patient_id';</script>";
         } else {
             echo "<script>alert('Error saving record');</script>";
         }
