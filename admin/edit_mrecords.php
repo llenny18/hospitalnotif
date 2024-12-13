@@ -96,8 +96,38 @@
                 <form method="post">
         <div class="form-group">
             <label for="patient_id">Patient ID</label>
+            <?php
+if(isset($patient_id)){
+?>
             <input type="text" class="form-control" id="patient_id" name="patient_id" value="<?php echo isset($patient_id) ? htmlspecialchars($patient_id) : rand(9999,99999); ?>" required>
-        </div>
+            <?php
+}
+else{
+
+
+?>
+            <select name="patient_id" id="patient" required class="form-control" id="patient_id" name="patient_id">
+            <option value="" disabled selected>-- Select Patient --</option>
+            <?php
+            $sql = "SELECT patient_id, full_name FROM patients";
+            $result = $conn->query($sql);
+            // Populate the dropdown with patients
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<option value="' . $row['patient_id'] . '">' . htmlspecialchars($row['full_name']) . '</option>';
+                }
+            } else {
+                echo '<option value="" disabled>No patients available</option>';
+            }
+            ?>
+        </select>
+
+        <?php
+}
+
+?>
+        
+          </div>
         <div class="form-group">
             <label for="checkup_date">Checkup Date</label>
             <input type="date" class="form-control" id="checkup_date" name="checkup_date" value="<?php echo isset($checkup_date) ? htmlspecialchars($checkup_date) : ''; ?>" required>

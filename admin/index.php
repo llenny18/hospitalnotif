@@ -60,7 +60,7 @@ if ($result->num_rows > 0) {
 
           <div class="row mb-3">
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-12 col-md-12 mb-4">
+            <div class="col-xl-6 col-md-6 mb-4 " style="margin-left: 23%;">
               <div class="card h-100">
                 <div class="card-body">
                   <div class="row align-items-center justify-content-between">
@@ -68,7 +68,7 @@ if ($result->num_rows > 0) {
                  
                       <div class="mt-2 mb-0 text-muted text-xs">
                       <div >
-        <canvas id="diagnosisChart" s></canvas>
+        <canvas id="diagnosisChart" ></canvas>
     </div>
     <?php 
     $newString = str_replace('"', "", json_encode($data));
